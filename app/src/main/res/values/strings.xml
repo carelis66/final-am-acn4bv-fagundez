@@ -6,7 +6,7 @@
     <string name="btn_ir_tareas">Ir a Mis Tareas</string>
     <string name="btn_acerca">Acerca de la App</string>
 
-    <!-- Acerca de -->
+    <!-- Acerca de la web -->
     <string name="acerca_title">Mis Quehaceres</string>
     <string name="acerca_desarrollada_por">Aplicación desarrollada por:</string>
     <string name="acerca_autor">Carelis Fagúndez</string>
