@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondoApp"
-    android:padding="@dimen/padding_normal">
+    android:background="@color/backgroundLight"
+    android:padding="@dimen/screen_padding">
 
-    <!-- Encabezado con logo + título -->
+    <!-- Encabezado -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="0dp"
@@ -20,53 +20,58 @@
 
         <ImageView
             android:id="@+id/logoApp"
-            android:layout_width="@dimen/icono_grande"
-            android:layout_height="@dimen/icono_grande"
+            android:layout_width="@dimen/logo_size"
+            android:layout_height="@dimen/logo_size"
             android:src="@mipmap/ic_launcher_round"
             android:contentDescription="@string/app_name"
-            android:layout_marginEnd="@dimen/margen_normal" />
+            android:layout_marginEnd="@dimen/button_margin_vertical" />
 
         <TextView
             android:id="@+id/titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_title"
-            android:textSize="@dimen/texto_titulo"
-            android:textStyle="bold" />
+            android:text="@string/app_name"
+            android:textColor="@color/textTitle"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"/>
     </LinearLayout>
 
-    <!-- Caja de texto para ingresar quehacer -->
+    <!-- Entrada de texto -->
     <EditText
         android:id="@+id/entradaQuehacer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/hint_entrada"
-        android:layout_marginTop="@dimen/margen_normal"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnAgregar" />
+        app:layout_constraintEnd_toStartOf="@id/btnAgregar"
+        android:layout_marginTop="@dimen/button_margin_vertical"/>
 
-    <!-- Botón para agregar -->
+    <!-- Botón agregar -->
     <Button
         android:id="@+id/btnAgregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_agregar"
-        android:backgroundTint="@color/botonAgregar"
-        android:textColor="@color/botonAgregarTexto"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/button_margin_vertical"/>
 
-    <!-- Scroll principal con listas -->
+    <!-- Scroll con secciones -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margen_normal"
         app:layout_constraintTop_toBottomOf="@id/entradaQuehacer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/button_margin_vertical">
 
         <LinearLayout
             android:id="@+id/contenedorPrincipal"
@@ -80,29 +85,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/margen_normal">
+                android:layout_marginTop="@dimen/button_margin_vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/icono_normal"
-                    android:layout_height="@dimen/icono_normal"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/ic_clipboard_add"
                     android:contentDescription="@string/titulo_pendientes"
-                    android:layout_marginEnd="@dimen/margen_normal" />
+                    android:layout_marginEnd="12dp"/>
 
                 <TextView
                     android:id="@+id/tituloPendientes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/titulo_pendientes"
-                    android:textSize="@dimen/texto_seccion"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/subtitle_text_size"
+                    android:textColor="@color/textPrimary"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/contenedorPendientes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"/>
 
             <!-- Sección Terminadas -->
             <LinearLayout
@@ -110,59 +116,62 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/margen_grande">
+                android:layout_marginTop="@dimen/card_padding">
 
                 <ImageView
-                    android:layout_width="@dimen/icono_normal"
-                    android:layout_height="@dimen/icono_normal"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/ic_check"
                     android:contentDescription="@string/titulo_terminadas"
-                    android:layout_marginEnd="@dimen/margen_normal" />
+                    android:layout_marginEnd="12dp"/>
 
                 <TextView
                     android:id="@+id/tituloTerminadas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/titulo_terminadas"
-                    android:textSize="@dimen/texto_seccion"
-                    android:textStyle="bold" />
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/subtitle_text_size"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/contenedorTerminadas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"/>
 
-            <!-- Sección Prioridad -->
+            <!-- Sección Importantes -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/margen_grande">
+                android:layout_marginTop="@dimen/card_padding">
 
                 <ImageView
-                    android:layout_width="@dimen/icono_normal"
-                    android:layout_height="@dimen/icono_normal"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/ic_important"
                     android:contentDescription="@string/titulo_importantes"
-                    android:layout_marginEnd="@dimen/margen_normal" />
+                    android:layout_marginEnd="12dp"/>
 
                 <TextView
                     android:id="@+id/tituloPrioridad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/titulo_importantes"
-                    android:textSize="@dimen/texto_seccion"
-                    android:textStyle="bold" />
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/subtitle_text_size"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/contenedorPrioridad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"/>
+
         </LinearLayout>
     </ScrollView>
 

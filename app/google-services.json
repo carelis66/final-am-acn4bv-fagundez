@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "201738367708",
+    "project_id": "misquehaceresapp",
+    "storage_bucket": "misquehaceresapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201738367708:android:2a3e5571389821830f3a19",
+        "android_client_info": {
+          "package_name": "com.example.misquehaceresapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMjojBH6fGeH2eYVXb_nBzzzAoa9cAQ80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

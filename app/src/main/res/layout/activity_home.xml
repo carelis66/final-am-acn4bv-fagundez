@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    android:padding="@dimen/screen_padding">
+
+    <TextView
+        android:id="@+id/tituloHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_title"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
+        android:textColor="@color/textTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnIrTareas"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        android:text="@string/btn_ir_tareas"
+        app:layout_constraintTop_toBottomOf="@id/tituloHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
+
+    <Button
+        android:id="@+id/btnAcerca"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        android:text="@string/btn_acerca"
+        app:layout_constraintTop_toBottomOf="@id/btnIrTareas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/button_margin_vertical"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

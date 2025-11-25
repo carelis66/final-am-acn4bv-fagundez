@@ -1,15 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
+    // Plugin de Google Services para Firebase
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.example.misquehaceresapp"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.misquehaceresapp"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -25,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -32,11 +35,22 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
+    //  Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+
+    //Firebase Analytics
+    implementation("com.google.firebase:firebase-analytics")
+
+    //Firestore
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

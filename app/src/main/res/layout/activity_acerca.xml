@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/card_padding"
+    android:background="@color/backgroundLight">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="@dimen/logo_size"
+        android:layout_height="@dimen/logo_size"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tituloAcerca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/acerca_title"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
+        android:textColor="@color/textTitle"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Subtítulo 1 -->
+    <TextView
+        android:id="@+id/textInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/acerca_desarrollada_por"
+        android:textSize="@dimen/subtitle_text_size"
+        android:textColor="@color/textPrimary"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- Nombre -->
+    <TextView
+        android:id="@+id/textAutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/acerca_autor"
+        android:textSize="@dimen/subtitle_text_size"
+        android:textColor="@color/textPrimary"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Versión -->
+    <TextView
+        android:id="@+id/textVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/acerca_version"
+        android:textSize="@dimen/subtitle_text_size"
+        android:textColor="@color/textPrimary"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Descripción -->
+    <TextView
+        android:id="@+id/textDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/acerca_desc"
+        android:textSize="@dimen/body_text_size"
+        android:textColor="@color/textPrimary"
+        android:gravity="center"/>
+
+</LinearLayout>
+
+

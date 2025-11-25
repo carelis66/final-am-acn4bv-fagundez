@@ -1,24 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Paleta base -->
-    <!-- Colores base -->
-    <color name="negro">#000000</color>
-    <color name="blanco">#FFFFFF</color>
-    <color name="gris_claro">#FAFAFA</color>
-    <color name="gris">#757575</color>
-    <color name="morado">#673AB7</color>
+    <!-- Colores principales -->
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorAccent">#FF4081</color>
 
-    <!-- Fondo de la app -->
-    <color name="fondoApp">#FAFAFA</color>
+    <!-- Fondo & texto -->
+    <color name="backgroundLight">#F9F7FD</color>
+    <color name="textPrimary">#3A3A3A</color>
+    <color name="textTitle">#4B2F8D</color>
 
-    <!-- Colores de texto según estado de las tareas -->
-    <color name="tareaNormal">#000000</color>      <!-- Negro -->
-    <color name="tareaImportante">#D32F2F</color> <!-- Rojo fuerte -->
-    <color name="tareaTerminada">#757575</color>  <!-- Gris -->
-
-    <!-- Extras para íconos / botones -->
-    <color name="iconoPrincipal">#4CAF50</color>  <!-- Verde check -->
-    <color name="iconoImportante">#FFC107</color> <!-- Amarillo -->
-    <color name="botonAgregar">#673AB7</color>    <!-- Morado -->
-    <color name="botonAgregarTexto">#FFFFFF</color>
+    <!-- Estados de tareas -->
+    <color name="tareaNormal">#000000</color>
+    <color name="tareaTerminada">#808080</color>
+    <color name="tareaImportante">#D32F2F</color>
 </resources>
+

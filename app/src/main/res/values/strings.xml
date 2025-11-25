@@ -1,15 +1,34 @@
 <resources>
-    <!-- Nombre de la app -->
     <string name="app_name">Mis Quehaceres</string>
-    <string name="app_title">✅ Mis Quehaceres</string>
 
-    <!-- Entrada de texto -->
-    <string name="hint_entrada">Escribe un quehacer...</string>
+    <!-- Home -->
+    <string name="home_title">Mis Quehaceres</string>
+    <string name="btn_ir_tareas">Ir a Mis Tareas</string>
+    <string name="btn_acerca">Acerca de la App</string>
+
+    <!-- Acerca de -->
+    <string name="acerca_title">Mis Quehaceres</string>
+    <string name="acerca_desarrollada_por">Aplicación desarrollada por:</string>
+    <string name="acerca_autor">Carelis Fagúndez</string>
+    <string name="acerca_version">Versión 2025</string>
+    <string name="acerca_desc">
+        Esta app permite gestionar tareas diarias de manera simple y visual.
+    </string>
+
+    <!-- MainActivity: Entrada y botón -->
+    <string name="hint_entrada">Escribe un quehacer</string>
     <string name="btn_agregar">Agregar</string>
 
     <!-- Títulos de secciones -->
     <string name="titulo_pendientes">Pendientes</string>
     <string name="titulo_terminadas">Terminadas</string>
-    <string name="titulo_importantes">Prioridad</string>
+    <string name="titulo_importantes">Importantes</string>
+
+    <!-- Mensajes -->
+    <string name="toast_escribe_quehacer">Escribe un quehacer primero</string>
+    <string name="toast_tarea_eliminada">Tarea eliminada</string>
+    <string name="toast_bienvenida">Bienvenida a tus tareas</string>
 </resources>
+
+
 
