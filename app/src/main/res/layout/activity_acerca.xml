@@ -8,7 +8,7 @@
     android:padding="@dimen/card_padding"
     android:background="@color/backgroundLight">
 
-    <!-- Logo -->
+    <!-- Logo, explicacion -->
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="@dimen/logo_size"
