@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializar Firestore
+        // Inicializar Firestore en la base
         db = FirebaseFirestore.getInstance();
 
         //mensaje de bienvenida
