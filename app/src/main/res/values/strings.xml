@@ -24,10 +24,13 @@
     <string name="titulo_terminadas">Terminadas</string>
     <string name="titulo_importantes">Importantes</string>
 
-    <!-- Mensajes -->
+    <!-- Mensajes finales -->
     <string name="toast_escribe_quehacer">Escribe un quehacer primero</string>
     <string name="toast_tarea_eliminada">Tarea eliminada</string>
     <string name="toast_bienvenida">Bienvenida a tus tareas</string>
+
+    <string name="debug_commit_2">c2</string>
+
 </resources>
 
 
