@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         entradaQuehacer = findViewById(R.id.entradaQuehacer);
         btnAgregar = findViewById(R.id.btnAgregar);
 
-        //  Cargar tareas desde Firestore
+        //  Cargar y guardar tareas desde Firestore
         cargarTareasDesdeFirestore();
 
         //Botón Agregar
