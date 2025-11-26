@@ -1,5 +1,5 @@
 <resources>
-    <!-- Colores principales -->
+    <!-- arreglos: Colores principales -->
     <color name="colorPrimary">#673AB7</color>
     <color name="colorPrimaryDark">#512DA8</color>
     <color name="colorAccent">#FF4081</color>
