@@ -36,7 +36,7 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-    <!-- Entrada de texto -->
+    <!-- Entrada de textos -->
     <EditText
         android:id="@+id/entradaQuehacer"
         android:layout_width="0dp"
