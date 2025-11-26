@@ -3,7 +3,7 @@ plugins {
     // Plugin de Google Services para Firebase
     id("com.google.gms.google-services")
 }
-
+// Referencias a la base de firebase
 android {
     namespace = "com.example.misquehaceresapp"
     compileSdk = 34
