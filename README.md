@@ -1,6 +1,6 @@
 **Parcial 2 - Aplicaciones Móviles (Escuela Da Vinci)** Comisión [ACN4BV]
 - Aplicación móvil en **Java con Android Studio**:para la gestión de tareas y quehaceres diarios.
-📱 MisQuehaceresApp
+-📱 MisQuehaceresApp
 <<<<<<< HEAD
 =======
 - **Carelis Fagúndez Frías**
