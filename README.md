@@ -31,9 +31,9 @@ Prof. Sergio Medina
 
 ## Funcionalidades principales
 - Agregar tareas a la lista de **Pendientes**.
-- ✔Marcar tareas como **Terminadas**.
--  ! Mover tareas a la lista de **Prioridad** (para cosas importantes como turnos médicos).
--  Eliminar tareas con un menú contextual.
+- Marcar tareas como **Terminadas**.
+- Mover tareas a la lista de **Prioridad** (para cosas importantes como turnos médicos).
+- Eliminar tareas con un menú contextual.
 -  Colores distintos según el estado de la tarea.
 
 ---
@@ -87,7 +87,7 @@ Cada documento Firestore contiene la siguiente estructura:
 
 ```
 {
-  "texto": "Comprar pan",
+  "texto": "Llamar al medico",
   "estado": "pendiente"
 }
 ```
