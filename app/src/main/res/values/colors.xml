@@ -1,8 +1,17 @@
 <resources>
-    <!-- arreglos: Colores principales -->
+    <!-- Colores principales -->
     <color name="colorPrimary">#673AB7</color>
     <color name="colorPrimaryDark">#512DA8</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Necesarios para layouts -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Material defaults usados por botón login -->
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_200">#BB86FC</color>
+    <color name="teal_200">#03DAC5</color>
 
     <!-- Fondo & textos -->
     <color name="backgroundLight">#F9F7FD</color>
@@ -14,4 +23,5 @@
     <color name="tareaTerminada">#808080</color>
     <color name="tareaImportante">#D32F2F</color>
 </resources>
+
 
