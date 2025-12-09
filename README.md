@@ -1,8 +1,7 @@
-**Parcial 2 - Aplicaciones Móviles (Escuela Da Vinci)** Comisión [ACN4BV]
+**FINAL - Aplicaciones Móviles (Escuela Da Vinci)** Comisión [ACN4BV]
 - Aplicación móvil en **Java con Android Studio**:para la gestión de tareas y quehaceres diarios.
 -📱 MisQuehaceresApp
-<<<<<<< HEAD
-=======
+============================
 - **Carelis Fagúndez Frías**
 - Dni: 19094687.
 - Prof. Sergio Medina
@@ -54,14 +53,6 @@ Prof. Sergio Medina
 - ConstraintLayout y LinearLayout
 - GitHub para control de versiones
 
----
-
-##  Posibles mejoras a futuro
--  Asignar fechas y horas a las tareas.
--  Notificaciones para recordar tareas importantes.
-- Persistencia de datos (guardar las tareas en base de datos o SharedPreferences).
-=======
----
 
 ## Características Principales
 
@@ -104,16 +95,15 @@ Cada documento Firestore contiene la siguiente estructura:
 ---
 
 ## Tecnologías Utilizadas
-
-| Tecnología                 | Uso                               |
-| -------------------------- | --------------------------------- |
-| Java                       | Lógica principal de la aplicación |
-| XML                        | Diseño de interfaz                |
-| Android Studio             | Entorno de desarrollo             |
-| Firebase Firestore         | Base de datos NoSQL               |
-| Firebase Google Services   | Integración de servicios          |
-| Material Design Components | Identidad visual moderna          |
-
+ Tecnología            
+| --------------------------------------------|
+| Java                                        |
+| XML                                         |
+| Android Studio                              |
+| Firebase Firestore                          |
+| Firebase Google Services & Authentication   | 
+| Material Design Components                  |
+| Gradle+                                     | 
 ---
 
 
@@ -128,8 +118,6 @@ Cada documento Firestore contiene la siguiente estructura:
 * Descargar `google-services.json`
 * Colocarlo en la carpeta:
   `app/google-services.json`
-
-
 ---
 
 ## Funcionamiento con Firestore
@@ -138,6 +126,11 @@ Cada documento Firestore contiene la siguiente estructura:
 
 * Se sube a Firestore.
 * Se muestra en pantalla solo si la operación se completa exitosamente.
+* La app utiliza **Firebase Auth** para:
+- Crear usuarios
+- Validar credenciales
+- Manejar sesiones
+- Obtener información del usuario autenticado
 
 ### Cargar tareas al abrir la app
 
@@ -166,9 +159,9 @@ Pantalla de bienvenida y navegación principal.
 
 Pantalla de gestión de tareas con integración completa a Firestore.
 
-### AcercaActivity
-
-Pantalla con información de autor, descripción y versión de la app.
+### ver usuario
+Mail user
+Logout
 
 ---
 
@@ -181,4 +174,4 @@ Pantalla con información de autor, descripción y versión de la app.
 5. Ejecutar con el emulador.
 
 ---
->>>>>>> 86c9c3fa13f4996be45fccb4e21739e28bbe0ac2
+
