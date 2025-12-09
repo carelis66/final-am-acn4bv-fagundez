@@ -1,9 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    // Plugin de Google Services para Firebase
+    id("com.android.application")
     id("com.google.gms.google-services")
 }
-// Referencias a la base de firebase
+
 android {
     namespace = "com.example.misquehaceresapp"
     compileSdk = 34
@@ -14,7 +13,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,18 +38,36 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    //  Firebase
+    // Firebase BOM
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
 
-    //Firebase Analytics
+    // Firebase Auth
+    implementation("com.google.firebase:firebase-auth")
+
+    // Firebase Analytics
     implementation("com.google.firebase:firebase-analytics")
 
-    //Firestore
+    // Firestore
     implementation("com.google.firebase:firebase-firestore-ktx")
 
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
-
+    // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+}
+
+// 🔥 Tarea para obtener el SHA1 aunque no exista signingReport
+tasks.register("printSha1") {
+    doLast {
+        val keystore = System.getProperty("user.home") + "/.android/debug.keystore"
+        val cmd = "keytool -list -v -keystore $keystore -alias androiddebugkey -storepass android -keypass android"
+        println("Ejecutando: $cmd")
+        Runtime.getRuntime().exec(cmd).inputStream.bufferedReader().use {
+            println(it.readText())
+        }
+    }
 }
