@@ -1,5 +1,6 @@
 package com.example.misquehaceresapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,65 +15,76 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout contenedorPendientes, contenedorTerminadas, contenedorPrioridad;
     private EditText entradaQuehacer;
-    private Button btnAgregar;
+    private Button btnAgregar, btnPerfil;
 
-    //  FIRESTORE
     private FirebaseFirestore db;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializar Firestore en la base
-        db = FirebaseFirestore.getInstance();
+        // ------------------ PROTEGER SI NO HAY LOGIN ------------------
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
 
-        //mensaje de bienvenida
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
+
+        // Si vino con mensaje de bienvenida lo mostramos
         String mensaje = getIntent().getStringExtra("mensajeBienvenida");
         if (mensaje != null && !mensaje.isEmpty()) {
             Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
         }
 
-        //Ref a vistas
+        // ------------------ FIRESTORE ------------------
+        db = FirebaseFirestore.getInstance();
+
         contenedorPendientes = findViewById(R.id.contenedorPendientes);
         contenedorTerminadas = findViewById(R.id.contenedorTerminadas);
         contenedorPrioridad = findViewById(R.id.contenedorPrioridad);
         entradaQuehacer = findViewById(R.id.entradaQuehacer);
         btnAgregar = findViewById(R.id.btnAgregar);
 
-        //  Cargar y guardar tareas desde Firestore
+        btnPerfil = findViewById(R.id.btnPerfil);
+        btnPerfil.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+            startActivity(intent);
+        });
+
+        // ------------------ CARGAR TAREAS ------------------
         cargarTareasDesdeFirestore();
 
-        //Botón Agregar
+        // ------------------ AGREGAR TAREA ------------------
         btnAgregar.setOnClickListener(v -> {
             String texto = entradaQuehacer.getText().toString().trim();
 
             if (!texto.isEmpty()) {
                 agregarTareaFirestore(texto, "pendiente");
-                entradaQuehacer.setText(""); // limpiar campo
+                entradaQuehacer.setText("");
             } else {
-                Toast.makeText(this,
-                        getString(R.string.toast_escribe_quehacer),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.toast_escribe_quehacer), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    // =====================================================================================
-    //  GUARDAR TAREA EN FIRESTORE
-    // =====================================================================================
+    // ================= FIRESTORE → GUARDAR =================
     private void agregarTareaFirestore(String texto, String estado) {
         Map<String, Object> tarea = new HashMap<>();
         tarea.put("texto", texto);
@@ -80,22 +92,17 @@ public class MainActivity extends AppCompatActivity {
 
         db.collection("tareas")
                 .add(tarea)
-                .addOnSuccessListener(ref -> {
-                    agregarTareaVisual(texto, estado, ref.getId());
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error guardando tarea", Toast.LENGTH_SHORT).show();
-                });
+                .addOnSuccessListener(ref -> agregarTareaVisual(texto, estado, ref.getId()))
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error guardando tarea", Toast.LENGTH_SHORT).show()
+                );
     }
 
-    // =====================================================================================
-    //  CARGAR TODAS LAS TAREAS DESDE FIRESTORE id
-    // =====================================================================================
+    // ================= FIRESTORE → CARGAR =================
     private void cargarTareasDesdeFirestore() {
         db.collection("tareas")
                 .get()
                 .addOnSuccessListener(snap -> {
-
                     for (QueryDocumentSnapshot doc : snap) {
                         String texto = doc.getString("texto");
                         String estado = doc.getString("estado");
@@ -107,9 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    // =====================================================================================
-    // AGREGAR TAREA A LA PANTALLA
-    // =====================================================================================
+    // ================= AGREGAR VISUAL =================
     private void agregarTareaVisual(String texto, String estado, String idDocumento) {
 
         LinearLayout destino;
@@ -134,51 +139,49 @@ public class MainActivity extends AppCompatActivity {
         nuevaTarea.setTextSize(16f);
         nuevaTarea.setPadding(8, 8, 8, 8);
         nuevaTarea.setTextColor(ContextCompat.getColor(this, color));
-
-        nuevaTarea.setTag(idDocumento); // 🔥 Guardamos el ID de Firestore dentro del TextView
+        nuevaTarea.setTag(idDocumento);
 
         nuevaTarea.setOnClickListener(v -> mostrarMenu(v, nuevaTarea));
 
         destino.addView(nuevaTarea);
     }
 
-    // =====================================================================================
-    // MENÚ CONTEXTUAL
-    // =====================================================================================
     private void mostrarMenu(View vista, TextView tarea) {
         PopupMenu popup = new PopupMenu(this, vista);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu_main, popup.getMenu());
-
         popup.setOnMenuItemClickListener(item -> manejarAccionMenu(item, tarea));
         popup.show();
     }
 
-    // =====================================================================================
-    //  MANEJAR ACCIONES DEL MENÚ
-    // =====================================================================================
+    // ======= AQUÍ VA LA VERSIÓN **SIN SWITCH**, SOLO IF/ELSE =======
     private boolean manejarAccionMenu(MenuItem item, TextView tarea) {
 
         String id = (String) tarea.getTag();
-
         if (id == null) return false;
 
-        if (item.getItemId() == R.id.action_marcar_terminada) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.action_marcar_terminada) {
+
             actualizarEstadoFirestore(id, "terminada");
             moverTarea(tarea, contenedorTerminadas, R.color.tareaTerminada);
             return true;
 
-        } else if (item.getItemId() == R.id.action_marcar_prioridad) {
+        } else if (itemId == R.id.action_marcar_prioridad) {
+
             actualizarEstadoFirestore(id, "prioridad");
             moverTarea(tarea, contenedorPrioridad, R.color.tareaImportante);
             return true;
 
-        } else if (item.getItemId() == R.id.action_marcar_pendiente) {
+        } else if (itemId == R.id.action_marcar_pendiente) {
+
             actualizarEstadoFirestore(id, "pendiente");
             moverTarea(tarea, contenedorPendientes, R.color.tareaNormal);
             return true;
 
-        } else if (item.getItemId() == R.id.action_eliminar) {
+        } else if (itemId == R.id.action_eliminar) {
+
             eliminarTareaFirestore(id);
             ((LinearLayout) tarea.getParent()).removeView(tarea);
             Toast.makeText(this, getString(R.string.toast_tarea_eliminada), Toast.LENGTH_SHORT).show();
@@ -188,40 +191,17 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    // =====================================================================================
-    //  ACTUALIZAR ESTADO EN FIRESTORE
-    // =====================================================================================
     private void actualizarEstadoFirestore(String id, String nuevoEstado) {
-        db.collection("tareas").document(id)
-                .update("estado", nuevoEstado);
+        db.collection("tareas").document(id).update("estado", nuevoEstado);
     }
 
-    // =====================================================================================
-    //  ELIMINAR TAREA DE FIRESTORE
-    // =====================================================================================
     private void eliminarTareaFirestore(String id) {
-        db.collection("tareas").document(id)
-                .delete();
+        db.collection("tareas").document(id).delete();
     }
 
-    // =====================================================================================
-    // MOVER TAREA EN PANTALLA
-    // =====================================================================================
     private void moverTarea(TextView tarea, LinearLayout nuevoContenedor, int color) {
         ((LinearLayout) tarea.getParent()).removeView(tarea);
         tarea.setTextColor(ContextCompat.getColor(this, color));
         nuevoContenedor.addView(tarea);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
